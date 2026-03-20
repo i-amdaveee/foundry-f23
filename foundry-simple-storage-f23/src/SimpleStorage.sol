@@ -1,34 +1,27 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.18; //solidity version and the sign upward to represent that the compiler can use any version higher
+pragma solidity ^0.8.18;
 
-contract SimpleStorage{
-    
-     uint256  myfavoriteNumber;//0, also by default this is "internal" meaning you wont see the value of the  favourite number ,change it to public if you want to be able to see it
-     
-     struct person{
-        uint256 favoritenumber;
+contract SimpleStorage {
+    uint256 public myFavoriteNumber;
+
+    struct Person {
+        uint256 favoriteNumber;
         string name;
-     }
-     function store(uint256 _favouriteNumber) public virtual {
-      
-        myfavoriteNumber=_favouriteNumber;}// this finction updates the  favourite number to a new number 
+    }
 
-      function retrieve() public view returns(uint256){
-         return myfavoriteNumber;
-      }// this retrieves the stored number 
-      // mapping
+    Person[] public listOfPeople;
+    mapping(string => uint256) public nameToFavoriteNumber;
 
-       person[] public listofpeople;//[]
-      mapping (string => uint256) public nameToFavouritenumber;
+    function store(uint256 _favoriteNumber) public {
+        myFavoriteNumber = _favoriteNumber;
+    }
 
-   // Memory call data and storage
+    function retrieve() public view returns (uint256) {
+        return myFavoriteNumber;
+    }
 
-   function addperson( string memory _name, uint256 _favoritenumber) public{
-      //_name="cat";
-      listofpeople.push( person(_favoritenumber, _name));
-      nameToFavouritenumber[_name]=_favoritenumber;// this is saying anytime you search someones name you get the favourite number back
-   }
-    
-   
-
+    function addPerson(string memory _name, uint256 _favoriteNumber) public {
+        listOfPeople.push(Person(_favoriteNumber, _name));
+        nameToFavoriteNumber[_name] = _favoriteNumber;
+    }
 }
