@@ -1,0 +1,20 @@
+# Foundry build artifacts
+.env
+out/
+cache/
+broadcast/
+
+# Dependencies - ignore entire lib folder (restore later with "forge install")
+lib/
+
+# Lockfiles and modules
+.gitmodules
+foundry.lock
+
+# Ignore zkSync folder completely (keeps it local only)
+foundry-zksync/
+
+# General ignores
+node_modules/
+.DS_Store
+*.log
