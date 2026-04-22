@@ -15,7 +15,7 @@ contract FundMe {
     address[] public funders;
 
     address public /* immutable */ i_owner;
-    uint256 public constant MINIMUM_USD = 5 * 10 ** 18;
+    uint256 public constant MINIMUM_USD = 5e18;
 
     constructor() {
         i_owner = msg.sender;
@@ -35,7 +35,7 @@ contract FundMe {
 
     modifier onlyOwner() {
         // require(msg.sender == owner);
-        if (msg.sender != i_owner) revert NotOwner();
+        if (msg.sender != i_owner) revert Fundme__NotOwner();
         _;
     }
 
